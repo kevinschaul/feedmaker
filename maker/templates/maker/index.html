@@ -1,0 +1,93 @@
+<h1>Feed maker</h1>
+
+<p>Quickly generate an RSS feed from any website</p>
+
+<p>By <a href="https://www.kschaul.com/">Kevin Schaul</a></p>
+
+<h2>Make your own feed</h2>
+
+<p>Enter your own options, or choose an example:</p>
+
+<ul>
+{% for example in examples %}
+    <li><a href="#" onClick="showExample({{ example }})">{{ example.explanation }}</a></li>
+{% endfor %}
+</ul>
+
+<form id="maker-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button id="maker-submit">Test</button>
+</form>
+
+<div id="maker-test-url"></div>
+<div id="maker-results"></div>
+
+<script>
+    const form = document.getElementById("maker-form");
+    const button = document.getElementById("maker-submit");
+    const testUrl = document.getElementById("maker-test-url");
+    const results = document.getElementById("maker-results");
+
+    const showExample = (example) => {
+        for (let [key, value] of Object.entries(example)) {
+            try {
+                const input = document.getElementById("id_" + key)
+                if (input.type === "checkbox") {
+                    input.checked = value === "on";
+                } else {
+                    input.value = value;
+                }
+            } catch (e) { }
+        }
+        populateFeed();
+    }
+
+    const getSearchParams = () => {
+        const formData = new FormData(form);
+        formData.delete('csrfmiddlewaretoken');
+        return new URLSearchParams(formData);
+    };
+
+    const renderResults = (data) => {
+        let html = '<h2>Test results</h2>';
+
+        html += '<h3>' + data.title + '</h3>\n';
+        html += '<p>' + data.description + '</p>\n';
+
+        html += '<ul>\n'
+        for (const item of data.items) {
+            html += '<li>\n';
+            html += '<h4>' + item.title + '</h4>\n';
+            if (item.description) {
+                html += '<p>' + item.description + '</p>\n';
+            }
+            if (item.link) {
+                html += '<a>' + item.link + '</a>\n';
+            }
+            html += '</li>\n';
+        }
+        html += '</ul>\n'
+        results.innerHTML = html;
+    };
+
+    const populateFeed = () => {
+        results.innerHTML = 'Loading ...';
+
+        const searchParams = getSearchParams();
+        searchParams.set('format', 'json');
+
+        const url = 'feed/?' + searchParams.toString();
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => renderResults(data));
+
+        const feedUrl = '{{ absolute_url }}feed?' + getSearchParams();
+        testUrl.innerHTML = '<a href="' + feedUrl + '" target="_blank">' + feedUrl + '</a>\n';
+    }
+
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        populateFeed();
+    });
+</script>
