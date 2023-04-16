@@ -2,6 +2,8 @@
 
 Quickly generate an RSS feed from any website
 
+Read the [introductory blog post](https://www.kschaul.com/post/2023/04/16/feedmaker-quickly-generate-an-rss-feed-from-any-website/)
+
 ## Development
 
 Installation:
