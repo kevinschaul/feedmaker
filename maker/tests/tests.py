@@ -87,26 +87,31 @@ class TestGetFeedData(unittest.TestCase):
         expected = [
             {
                 "title": "What key players at Fox News said about the network and its viewers",
+                "description": None,
                 "link": "https://www.washingtonpost.com/media/2023/03/10/fox-news-lawsuit-key-players/",
                 "uniqueid": "https://www.washingtonpost.com/media/2023/03/10/fox-news-lawsuit-key-players/",
             },
             {
                 "title": "Kevin McCarthy joins the insurrection",
+                "description": None,
                 "link": "https://www.washingtonpost.com/opinions/2023/03/10/kevin-mccarthy-i-know-nothing-insurrection-questions/",
                 "uniqueid": "https://www.washingtonpost.com/opinions/2023/03/10/kevin-mccarthy-i-know-nothing-insurrection-questions/",
             },
             {
                 "title": "Russia’s hypersonic missile attack on Ukraine highlights Western vulnerability",
+                "description": None,
                 "link": "https://www.washingtonpost.com/world/2023/03/10/russia-hypersonic-missiles-western-vulnerability/",
                 "uniqueid": "https://www.washingtonpost.com/world/2023/03/10/russia-hypersonic-missiles-western-vulnerability/",
             },
             {
                 "title": "Ron DeSantis’s book ban mania targets Jodi Picoult — and she hits back",
+                "description": None,
                 "link": "https://www.washingtonpost.com/opinions/2023/03/10/ron-desantis-book-bans-martin-county-jodi-picoult/",
                 "uniqueid": "https://www.washingtonpost.com/opinions/2023/03/10/ron-desantis-book-bans-martin-county-jodi-picoult/",
             },
             {
                 "title": "Silicon Valley Bank closed in second-biggest bank failure in U.S. history",
+                "description": None,
                 "link": "https://www.washingtonpost.com/technology/2023/03/09/silicon-valley-bank-shares/",
                 "uniqueid": "https://www.washingtonpost.com/technology/2023/03/09/silicon-valley-bank-shares/",
             },
@@ -220,3 +225,28 @@ class TestParseItem(unittest.TestCase):
 
         expected = "https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023"
         self.assertEqual(actual, expected)
+
+    def test_title_and_description_required(self):
+        url = "https://www.mbta.com/news"
+        item = parse_item(
+            make_element(
+                """
+                    <div class="news-entry-hr-row news-entry-hr-col news-entry-item">
+                        <p>April 21, 2023</p>
+                        <p>
+                            <a class="news-entry-title" href="/news/2023-04-21/mbta-announces-additional-blue-line-schedule-revisions">MBTA Announces Additional Blue Line Schedule Revisions</a>
+                        </p>
+                        <p>The Blue Line evening weekday shuttle bus diversions will begin at 8 PM on April 24-27 and May 1-4. The work taking place on the Blue Line will focus on lifting speed restrictions.</p>
+                    </div>
+                    """,
+                url,
+            ),
+            url,
+            "a",
+            None,
+            "a",
+            False,
+        )
+
+        self.assertEqual(item["title"], "MBTA Announces Additional Blue Line Schedule Revisions")
+        self.assertEqual(item["description"], None)

@@ -63,7 +63,8 @@ def parse_item(
     selector_link,
     get_items_metadata,
 ):
-    item = {}
+    #  Initialize the item with a title and description, which are required by Django feed generator
+    item = {"title": None, "description": None}
 
     if selector_title:
         el_title = item_html.find(selector_title, first=True)
