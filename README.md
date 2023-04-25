@@ -11,6 +11,7 @@ Installation:
     pyenv virtualenv feedmaker
     pyenv activate
     pip install -r requirements.txt
+    cp .env.template .env
 
 Run locally:
 

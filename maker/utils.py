@@ -81,7 +81,7 @@ def parse_item(
         if el_link:
             link = urljoin(url, el_link.attrs["href"])
             item["link"] = link
-            item["uniqueid"] = link  # TODO optionally trim query parameters
+            item["unique_id"] = link  # TODO optionally trim query parameters
 
             if get_items_metadata:
                 try:
@@ -91,9 +91,9 @@ def parse_item(
                     logging.warning(f"Could not get items metadata for {link}: {e}")
                     pass
 
-    if "uniqueid" not in item:
+    if "unique_id" not in item:
         if "title" in item:
-            item["uniqueid"] = item["title"]
+            item["unique_id"] = item["title"]
 
     if "link" not in item:
         item["link"] = url

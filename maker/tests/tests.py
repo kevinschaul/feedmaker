@@ -89,31 +89,31 @@ class TestGetFeedData(unittest.TestCase):
                 "title": "What key players at Fox News said about the network and its viewers",
                 "description": None,
                 "link": "https://www.washingtonpost.com/media/2023/03/10/fox-news-lawsuit-key-players/",
-                "uniqueid": "https://www.washingtonpost.com/media/2023/03/10/fox-news-lawsuit-key-players/",
+                "unique_id": "https://www.washingtonpost.com/media/2023/03/10/fox-news-lawsuit-key-players/",
             },
             {
                 "title": "Kevin McCarthy joins the insurrection",
                 "description": None,
                 "link": "https://www.washingtonpost.com/opinions/2023/03/10/kevin-mccarthy-i-know-nothing-insurrection-questions/",
-                "uniqueid": "https://www.washingtonpost.com/opinions/2023/03/10/kevin-mccarthy-i-know-nothing-insurrection-questions/",
+                "unique_id": "https://www.washingtonpost.com/opinions/2023/03/10/kevin-mccarthy-i-know-nothing-insurrection-questions/",
             },
             {
                 "title": "Russia’s hypersonic missile attack on Ukraine highlights Western vulnerability",
                 "description": None,
                 "link": "https://www.washingtonpost.com/world/2023/03/10/russia-hypersonic-missiles-western-vulnerability/",
-                "uniqueid": "https://www.washingtonpost.com/world/2023/03/10/russia-hypersonic-missiles-western-vulnerability/",
+                "unique_id": "https://www.washingtonpost.com/world/2023/03/10/russia-hypersonic-missiles-western-vulnerability/",
             },
             {
                 "title": "Ron DeSantis’s book ban mania targets Jodi Picoult — and she hits back",
                 "description": None,
                 "link": "https://www.washingtonpost.com/opinions/2023/03/10/ron-desantis-book-bans-martin-county-jodi-picoult/",
-                "uniqueid": "https://www.washingtonpost.com/opinions/2023/03/10/ron-desantis-book-bans-martin-county-jodi-picoult/",
+                "unique_id": "https://www.washingtonpost.com/opinions/2023/03/10/ron-desantis-book-bans-martin-county-jodi-picoult/",
             },
             {
                 "title": "Silicon Valley Bank closed in second-biggest bank failure in U.S. history",
                 "description": None,
                 "link": "https://www.washingtonpost.com/technology/2023/03/09/silicon-valley-bank-shares/",
-                "uniqueid": "https://www.washingtonpost.com/technology/2023/03/09/silicon-valley-bank-shares/",
+                "unique_id": "https://www.washingtonpost.com/technology/2023/03/09/silicon-valley-bank-shares/",
             },
         ]
 
@@ -130,7 +130,7 @@ class TestGetFeedData(unittest.TestCase):
                 "title": 'FACS\nStill Life In Decay ("crimson Crush" Color Vinyl)',
                 "link": "https://www.reckless.com",
                 "description": 'FACS\nStill Life In Decay ("crimson Crush" Color Vinyl)\nTrouble in Mind\nThe always reliable FACS are back with a new one in 2023. After a few albums with a lot of studio trickery & manipulation, this one is mostly pretty straight forward recording-wise. The result is probably the most accurate documentation of what a force they are as a live band. Driving & repetitive THIS HEAT esque rhythms with sparse & brittle guitar from Brian. His voice is also way on top here which also gives this record a different feel. Another great one from these local heroes. RECOMMENDED.\nAvailable at: Belmont and Milwaukee Ave\nNew LP $17.99',
-                "uniqueid": 'FACS\nStill Life In Decay ("crimson Crush" Color Vinyl)',
+                "unique_id": 'FACS\nStill Life In Decay ("crimson Crush" Color Vinyl)',
             },
         ]
 
