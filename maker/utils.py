@@ -1,6 +1,6 @@
 import datetime
 import logging
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, urlunparse
 
 import requests
 from requests_html import HTMLResponse, HTMLSession, user_agent
@@ -62,6 +62,7 @@ def parse_item(
     selector_description,
     selector_link,
     get_items_metadata,
+    strip_url_params,
 ):
     #  Initialize the item with a title and description, which are required by Django feed generator
     item = {"title": None, "description": None}
@@ -80,8 +81,24 @@ def parse_item(
         el_link = item_html.find(selector_link, first=True)
         if el_link:
             link = urljoin(url, el_link.attrs["href"])
-            item["link"] = link
-            item["uniqueid"] = link  # TODO optionally trim query parameters
+
+            if strip_url_params:
+                parts = urlparse(link)
+                link_stripped = urlunparse(
+                    (
+                        parts.scheme,
+                        parts.netloc,
+                        parts.path,
+                        parts.params,
+                        None,
+                        parts.fragment,
+                    )
+                )
+                item["link"] = link_stripped
+                item["uniqueid"] = link_stripped
+            else:
+                item["link"] = link
+                item["uniqueid"] = link
 
             if get_items_metadata:
                 try:
@@ -108,6 +125,7 @@ def get_feed_items(
     selector_description=None,
     selector_link="a",
     get_items_metadata=False,
+    strip_url_params=False,
 ):
     r = cached_session_get(url, timeout=60 * 5)
 
@@ -120,6 +138,7 @@ def get_feed_items(
             selector_description,
             selector_link,
             get_items_metadata,
+            strip_url_params,
         )
         for i in items_raw[:ITEMS_LIMIT]
     ]

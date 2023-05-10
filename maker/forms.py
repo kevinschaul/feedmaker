@@ -11,3 +11,6 @@ class FeedForm(forms.Form):
     )
     selector_link = forms.CharField(label="CSS selector for the item link")
     get_items_metadata = forms.BooleanField(label="Include metadata for each item?")
+    strip_url_params = forms.BooleanField(
+        label="Strip item url parameters?"
+    )

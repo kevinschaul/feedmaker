@@ -204,6 +204,7 @@ class TestParseItem(unittest.TestCase):
             None,
             "a",
             False,
+            False,
         )["link"]
 
         expected = "https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023"
@@ -221,6 +222,43 @@ class TestParseItem(unittest.TestCase):
             None,
             "a",
             False,
+            False,
+        )["link"]
+
+        expected = "https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023"
+        self.assertEqual(actual, expected)
+
+    def test_strip_url_params_false(self):
+        url = "https://daily.bandcamp.com/best-jazz"
+        actual = parse_item(
+            make_element(
+                '<a href="https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023?some-query=exists"><a>',
+                url,
+            ),
+            url,
+            "a",
+            None,
+            "a",
+            False,
+            False,
+        )["link"]
+
+        expected = "https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023?some-query=exists"
+        self.assertEqual(actual, expected)
+
+    def test_strip_url_params_true(self):
+        url = "https://daily.bandcamp.com/best-jazz"
+        actual = parse_item(
+            make_element(
+                '<a href="https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023?some-query=exists"><a>',
+                url,
+            ),
+            url,
+            "a",
+            None,
+            "a",
+            False,
+            True,
         )["link"]
 
         expected = "https://daily.bandcamp.com/best-jazz/the-best-jazz-on-bandcamp-february-2023"
@@ -245,6 +283,7 @@ class TestParseItem(unittest.TestCase):
             "a",
             None,
             "a",
+            False,
             False,
         )
 

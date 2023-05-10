@@ -18,6 +18,7 @@ def index(request):
             "selector_description": "",
             "selector_link": "a",
             "get_items_metadata": "on",
+            "strip_url_params": "off",
         },
         {
             "explanation": "The most emailed stories from the New York Times",
@@ -28,6 +29,7 @@ def index(request):
             "selector_description": "",
             "selector_link": "a",
             "get_items_metadata": "off",
+            "strip_url_params": "off",
         },
         {
             "explanation": "The most read stories from the Wall Street Journal",
@@ -38,6 +40,7 @@ def index(request):
             "selector_description": "",
             "selector_link": "a",
             "get_items_metadata": "off",
+            "strip_url_params": "off",
         },
         {
             "explanation": "Best of jazz articles on Bandcamp",
@@ -48,6 +51,7 @@ def index(request):
             "selector_description": "",
             "selector_link": "a",
             "get_items_metadata": "off",
+            "strip_url_params": "off",
         },
         {
             "explanation": "Reckless Records",
@@ -58,6 +62,7 @@ def index(request):
             "selector_description": "table",
             "selector_link": "",
             "get_items_metadata": "off",
+            "strip_url_params": "off",
         },
     ]
     absolute_url = request.build_absolute_uri()
@@ -76,6 +81,7 @@ def feedView(request):
     kwargs["selector_description"] = request.GET.get("selector_description")
     kwargs["selector_link"] = request.GET.get("selector_link")
     kwargs["get_items_metadata"] = request.GET.get("get_items_metadata")
+    kwargs["strip_url_params"] = request.GET.get("strip_url_params")
 
     title = request.GET.get("feed_title")
     if not title:
