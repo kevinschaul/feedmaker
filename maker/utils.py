@@ -95,10 +95,10 @@ def parse_item(
                     )
                 )
                 item["link"] = link_stripped
-                item["uniqueid"] = link_stripped
+                item["unique_id"] = link_stripped
             else:
                 item["link"] = link
-                item["uniqueid"] = link
+                item["unique_id"] = link
 
             if get_items_metadata:
                 try:
@@ -108,9 +108,9 @@ def parse_item(
                     logging.warning(f"Could not get items metadata for {link}: {e}")
                     pass
 
-    if "uniqueid" not in item:
+    if "unique_id" not in item:
         if "title" in item:
-            item["uniqueid"] = item["title"]
+            item["unique_id"] = item["title"]
 
     if "link" not in item:
         item["link"] = url
