@@ -126,6 +126,7 @@ def get_feed_items(
     selector_link="a",
     get_items_metadata=False,
     strip_url_params=False,
+    reverse_items=False,
 ):
     r = cached_session_get(url, timeout=60 * 5)
 
@@ -142,5 +143,8 @@ def get_feed_items(
         )
         for i in items_raw[:ITEMS_LIMIT]
     ]
+
+    if reverse_items:
+        items.reverse()
 
     return items

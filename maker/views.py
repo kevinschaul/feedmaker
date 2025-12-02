@@ -82,6 +82,7 @@ def feedView(request):
     kwargs["selector_link"] = request.GET.get("selector_link")
     kwargs["get_items_metadata"] = request.GET.get("get_items_metadata")
     kwargs["strip_url_params"] = request.GET.get("strip_url_params")
+    kwargs["reverse_items"] = request.GET.get("reverse_items")
 
     title = request.GET.get("feed_title")
     if not title:
