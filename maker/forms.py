@@ -14,3 +14,5 @@ class FeedForm(forms.Form):
     strip_url_params = forms.BooleanField(
         label="Strip item url parameters?"
     )
+    reverse_items = forms.BooleanField(label="Return items in reverse order?")
+
