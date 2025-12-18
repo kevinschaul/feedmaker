@@ -8,18 +8,19 @@ Read the [introductory blog post](https://www.kschaul.com/post/2023/04/16/feedma
 
 Installation:
 
-    pyenv virtualenv feedmaker
-    pyenv activate
-    pip install -r requirements.txt
+    # Install uv if you haven't already: https://docs.astral.sh/uv/getting-started/installation/
+    # curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    uv sync
     cp .env.template .env
 
 Run locally:
 
-    ./manage.py runserver
+    uv run ./manage.py runserver
 
 Run tests:
 
-    ./manage.py test
+    uv run ./manage.py test
 
 ## Deploy
 
